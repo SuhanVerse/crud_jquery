@@ -5,3 +5,22 @@
     display: grid;
     row-gap: 1rem;
 }
+
+.items .single-item:nth-child(1) {
+    background: #ff9999;
+}
+.items .single-item:nth-child(2) {
+    background: #99ccff;
+}
+.items .single-item:nth-child(3) {
+    background: #99ff99;
+}
+.items .single-item:nth-child(4) {
+    background: #ffff99;
+}
+.items .single-item:nth-child(5) {
+    background: #ffcc99;
+}
+.items .single-item:nth-child(6) {
+    background: #cc99ff;
+}
