@@ -1,28 +1,73 @@
 /* global.css */
 
-*,
-::after,
-::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap");
+
+:root {
+    --color-primary: #2d5016;
+    --color-primary-light: #4a7c2c;
+    --color-accent: #ff6b35;
+    --color-bg: #fdfaf6;
+    --color-card: #ffffff;
+    --color-text: #2c2c2c;
+    --color-text-muted: #6b7280;
+    --color-border: #e8e3db;
+    --color-success: #4a7c2c;
+    --color-danger: #dc2626;
+    --shadow-md: 0 4px 12px rgba(45, 80, 22, 0.08);
+    --radius: 16px;
+    --transition: all 0.3s ease;
 }
 
 body {
-    background: linear-gradient(135deg, #99ccff, #cc99ff);
-    font-family: Helvetica, sans-serif;
-    font-weight: 400;
-    line-height: 1.2;
-    color: #222;
+    background: linear-gradient(135deg, #fdfaf6 0%, #f5f1e8 100%);
+    font-family: "DM Sans", sans-serif;
+    line-height: 1.6;
+    color: var(--color-text);
+    min-height: 100vh;
 }
 
 .section-center {
-    margin: 0 auto;
-    margin-top: 8rem;
-    max-width: 30rem;
-    background: #fff;
-    border-radius: 0.5rem;
+    margin: 4rem auto;
+    max-width: 540px;
+    background: var(--color-card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header */
+.grocery-header {
+    background: linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-primary-light)
+    );
     padding: 2rem;
-    position: relative;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    color: white;
+}
+
+.grocery-header h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin: 0;
+}
+
+.grocery-header p {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    opacity: 0.9;
 }

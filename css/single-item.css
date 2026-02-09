@@ -3,48 +3,100 @@
 .single-item {
     display: grid;
     grid-template-columns: auto 1fr auto auto;
-    column-gap: 1rem;
+    gap: 1rem;
     align-items: center;
-    padding: 0.75rem;
-    border-radius: 0.25rem;
-    transition: transform 0.2s ease;
+    padding: 1rem;
+    background: white;
+    border: 2px solid var(--color-border);
+    border-radius: 12px;
+    transition: var(--transition);
+    animation: itemAppear 0.4s ease-out;
+}
+
+@keyframes itemAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .single-item:hover {
-    transform: scale(1.02);
+    border-color: var(--color-primary-light);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
 }
 
-.single-item p {
-    text-transform: capitalize;
-    font-weight: 500;
+.single-item.completed {
+    background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+    border-color: #e5e7eb;
 }
 
+/* Custom checkbox */
 .single-item input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-primary);
+    border-radius: 6px;
     cursor: pointer;
-    width: 1rem;
-    height: 1rem;
+    transition: var(--transition);
 }
 
+.single-item input[type="checkbox"]:checked {
+    background: var(--color-success);
+    border-color: var(--color-success);
+}
+
+.single-item input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Text */
+.single-item p {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--color-text);
+}
+
+.single-item.completed p {
+    color: var(--color-text-muted);
+    text-decoration: line-through;
+}
+
+/* Buttons */
 .single-item .btn {
     cursor: pointer;
-    color: #fff;
-    border: transparent;
-    border-radius: 0.25rem;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    transition: background 0.3s ease;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem;
+    font-size: 1.1rem;
+    transition: var(--transition);
 }
 
 .single-item .edit-btn {
-    background: #cc99ff;
+    color: var(--color-primary);
 }
+
 .single-item .edit-btn:hover {
-    background: #a366ff;
+    background: rgba(74, 124, 44, 0.1);
 }
 
 .single-item .remove-btn {
-    background: #ff9999;
+    color: var(--color-danger);
 }
+
 .single-item .remove-btn:hover {
-    background: #e06666;
+    background: rgba(220, 38, 38, 0.1);
 }

@@ -1,28 +1,26 @@
-//single-item.js
 function createSingleItem(item) {
     var $div = $('<div class="single-item"></div>');
+    if (item.completed) $div.addClass("completed");
 
     $div.html(`
-    <input type="checkbox" ${item.completed ? "checked" : ""} />
-    <p style="text-decoration: ${item.completed ? "line-through" : "none"}">
-      ${item.name}
-    </p>
-    <button class="btn icon-btn edit-btn" type="button">
-      <i class="fa-regular fa-pen-to-square"></i>
-    </button>
-    <button class="btn icon-btn remove-btn" type="button">
-      <i class="fa-regular fa-trash-can"></i>
-    </button>
-  `);
+        <input type="checkbox" ${item.completed ? "checked" : ""} />
+        <p>${item.name}</p>
+        <button class="btn edit-btn" title="Edit item">
+            <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+        <button class="btn remove-btn" title="Remove item">
+            <i class="fa-regular fa-trash-can"></i>
+        </button>
+    `);
 
-    // Checkbox toggle
     $div.find('input[type="checkbox"]').on("change", function () {
+        $div.toggleClass("completed", $(this).is(":checked"));
         editCompleted(item.id);
     });
 
-    // Remove button
     $div.find(".remove-btn").on("click", function () {
-        removeItem(item.id);
+        $div.addClass("removing");
+        setTimeout(() => removeItem(item.id), 400);
     });
 
     return $div;
