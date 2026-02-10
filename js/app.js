@@ -30,11 +30,31 @@ function editCompleted(itemId) {
     render();
 }
 
+// Show toast message
+function showToast(message, type = "danger") {
+    var $toast = $("#toast");
+    if ($toast.length === 0) {
+        $("body").append('<div id="toast"></div>');
+        $toast = $("#toast");
+    }
+    $toast.text(message);
+
+    // Change color based on type
+    if (type === "success") {
+        $toast.css("background", "var(--color-success)");
+    } else {
+        $toast.css("background", "var(--color-danger)");
+    }
+
+    $toast.addClass("show");
+    setTimeout(() => $toast.removeClass("show"), 2000);
+}
+
 // Remove item
 function removeItem(itemId) {
     items = items.filter(function (item) {
         return item.id !== itemId;
     });
     render();
-    setTimeout(() => alert("Item deleted successfully!"), 0);
+    showToast("Item deleted successfully!");
 }

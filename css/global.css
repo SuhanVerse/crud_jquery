@@ -158,3 +158,28 @@ body::after {
 #app {
     padding: 2rem;
 }
+
+/* Toast Notification */
+#toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-danger);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+    font-size: 0.9rem;
+    z-index: 999;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+}
