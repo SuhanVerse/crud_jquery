@@ -5,11 +5,12 @@
     grid-template-columns: auto 1fr auto auto;
     gap: 1rem;
     align-items: center;
-    padding: 1rem;
+    padding: 1rem 1.25rem;
     background: white;
     border: 2px solid var(--color-border);
     border-radius: 12px;
     transition: var(--transition);
+    position: relative;
     animation: itemAppear 0.4s ease-out;
 }
 
@@ -31,19 +32,27 @@
 }
 
 .single-item.completed {
-    background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
     border-color: #e5e7eb;
 }
 
-/* Custom checkbox */
+/* Custom Checkbox */
 .single-item input[type="checkbox"] {
     appearance: none;
-    width: 20px;
-    height: 20px;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
     border: 2px solid var(--color-primary);
     border-radius: 6px;
-    cursor: pointer;
+    position: relative;
     transition: var(--transition);
+    background: white;
+    flex-shrink: 0;
+}
+
+.single-item input[type="checkbox"]:hover {
+    border-color: var(--color-primary-light);
+    box-shadow: 0 0 0 4px rgba(74, 124, 44, 0.1);
 }
 
 .single-item input[type="checkbox"]:checked {
@@ -54,35 +63,69 @@
 .single-item input[type="checkbox"]:checked::after {
     content: "";
     position: absolute;
-    left: 6px;
-    top: 2px;
+    left: 7px;
+    top: 3px;
     width: 6px;
-    height: 12px;
+    height: 11px;
     border: solid white;
-    border-width: 0 2px 2px 0;
+    border-width: 0 2.5px 2.5px 0;
     transform: rotate(45deg);
+    animation: checkmark 0.3s ease-out;
+}
+
+@keyframes checkmark {
+    0% {
+        height: 0;
+        width: 0;
+    }
+    50% {
+        height: 11px;
+        width: 0;
+    }
+    100% {
+        height: 11px;
+        width: 6px;
+    }
 }
 
 /* Text */
 .single-item p {
+    text-transform: capitalize;
+    font-size: 1.05rem;
     font-weight: 500;
-    font-size: 1rem;
     color: var(--color-text);
+    transition: var(--transition);
+    letter-spacing: 0.2px;
 }
 
 .single-item.completed p {
     color: var(--color-text-muted);
-    text-decoration: line-through;
 }
 
 /* Buttons */
 .single-item .btn {
     cursor: pointer;
+    color: white;
+    background: transparent;
     border: none;
     border-radius: 8px;
     padding: 0.5rem;
     font-size: 1.1rem;
     transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    position: relative;
+}
+
+.single-item .btn:hover {
+    transform: scale(1.1);
+}
+
+.single-item .btn:active {
+    transform: scale(0.95);
 }
 
 .single-item .edit-btn {
@@ -91,6 +134,7 @@
 
 .single-item .edit-btn:hover {
     background: rgba(74, 124, 44, 0.1);
+    color: var(--color-primary-light);
 }
 
 .single-item .remove-btn {
@@ -99,4 +143,38 @@
 
 .single-item .remove-btn:hover {
     background: rgba(220, 38, 38, 0.1);
+    color: #b91c1c;
+}
+
+/* Icon button styling */
+.single-item .icon-btn i {
+    transition: var(--transition);
+}
+
+.single-item .edit-btn:hover i {
+    transform: rotate(-10deg);
+}
+
+.single-item .remove-btn:hover i {
+    transform: rotate(10deg);
+}
+
+/* Empty state for removing */
+.single-item.removing {
+    animation: itemRemove 0.4s ease-out forwards;
+}
+
+@keyframes itemRemove {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100px);
+        height: 0;
+        padding: 0;
+        margin: 0;
+        border: none;
+    }
 }

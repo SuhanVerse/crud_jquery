@@ -1,10 +1,10 @@
 /* items.css */
 
 .items {
-    margin-top: 1.5rem;
+    margin-top: 0;
     display: grid;
-    gap: 1rem;
-    animation: fadeIn 0.5s ease-out;
+    gap: 0.875rem;
+    animation: fadeIn 0.5s ease-out 0.2s both;
 }
 
 @keyframes fadeIn {
@@ -21,7 +21,9 @@
     content: "Your list is empty! Add some items to get started.";
     display: block;
     text-align: center;
-    padding: 2rem;
+    padding: 3rem 2rem;
     color: var(--color-text-muted);
+    font-size: 1rem;
     font-style: italic;
+    animation: fadeIn 0.5s ease-out;
 }
