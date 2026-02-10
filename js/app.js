@@ -7,6 +7,9 @@ function render() {
     var $app = $("#app");
     $app.empty();
 
+    var $formElement = createForm();
+    $app.append($formElement);
+
     var $itemsElement = createItems(items);
     $app.append($itemsElement);
 }
