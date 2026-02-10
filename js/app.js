@@ -26,3 +26,12 @@ function editCompleted(itemId) {
     });
     render();
 }
+
+// Remove item
+function removeItem(itemId) {
+    items = items.filter(function (item) {
+        return item.id !== itemId;
+    });
+    render();
+    setTimeout(() => alert("Item deleted successfully!"), 0);
+}
