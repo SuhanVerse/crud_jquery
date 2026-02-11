@@ -1,4 +1,18 @@
-var items = groceryItems;
+// Local Storage Functions
+function getLocalStorage() {
+    var list = localStorage.getItem("grocery-list");
+    if (list) {
+        return JSON.parse(list);
+    }
+    return []; // start with empty list
+}
+
+function setLocalStorage(itemsArray) {
+    localStorage.setItem("grocery-list", JSON.stringify(itemsArray));
+}
+
+// Initialize items from local storage
+var items = getLocalStorage();
 var editId = null;
 
 // Render App
@@ -17,6 +31,7 @@ $(document).ready(function () {
     render();
 });
 
+// Add Item Function
 function addItem(itemName) {
     var newItem = {
         id: Date.now(),
@@ -24,10 +39,9 @@ function addItem(itemName) {
         completed: false,
     };
     items.push(newItem);
+    setLocalStorage(items);
     render();
-    // Toast is now triggered from form.js, so you can remove it here if you want
 }
-
 
 // Toggle completed state
 function editCompleted(itemId) {
@@ -37,6 +51,7 @@ function editCompleted(itemId) {
         }
         return item;
     });
+    setLocalStorage(items);
     render();
 }
 
@@ -63,6 +78,7 @@ function removeItem(itemId) {
     items = items.filter(function (item) {
         return item.id !== itemId;
     });
+    setLocalStorage(items);
     render();
     showToast("Item deleted successfully!");
 }
@@ -86,6 +102,7 @@ function applyEdit(newName) {
         return item;
     });
     editId = null;
+    setLocalStorage(items);
     render();
     showToast("Item updated successfully!", "success");
 }
