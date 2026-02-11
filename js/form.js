@@ -1,5 +1,3 @@
-//form.js
-
 function createForm() {
     var $form = $(`
         <form class="grocery-form">
@@ -12,19 +10,15 @@ function createForm() {
     $form.on("submit", function (e) {
         e.preventDefault();
         var itemName = $("#item-input").val().trim();
+
         if (itemName) {
             if (editId) {
                 applyEdit(itemName);
             } else {
-                var newItem = {
-                    id: Date.now(),
-                    name: itemName,
-                    completed: false,
-                };
-                items.push(newItem);
-                render();
+                addItem(itemName);
                 showToast("Item added successfully!", "success");
             }
+            // Reset form state
             $("#item-input").val("");
             $(".form-submit").text("Add");
         }

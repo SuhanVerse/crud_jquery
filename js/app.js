@@ -19,16 +19,15 @@ $(document).ready(function () {
 
 function addItem(itemName) {
     var newItem = {
+        id: Date.now(),
         name: itemName,
         completed: false,
-        id: generateId(),
     };
     items.push(newItem);
     render();
-    setTimeout(function () {
-        showToast("Item Added Successfully!");
-    }, 0);
+    // Toast is now triggered from form.js, so you can remove it here if you want
 }
+
 
 // Toggle completed state
 function editCompleted(itemId) {

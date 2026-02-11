@@ -33,5 +33,9 @@ function createSingleItem(item) {
         setTimeout(() => removeItem(item.id), 400);
     });
 
+    $editBtn.on("click", function () {
+        startEdit(item.id);
+    });
+
     return $div;
 }
