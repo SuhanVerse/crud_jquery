@@ -1,6 +1,5 @@
-//app.js
-
 var items = groceryItems;
+var editId = null;
 
 // Render App
 function render() {
@@ -14,10 +13,22 @@ function render() {
     $app.append($itemsElement);
 }
 
-// Initialize App
 $(document).ready(function () {
     render();
 });
+
+function addItem(itemName) {
+    var newItem = {
+        name: itemName,
+        completed: false,
+        id: generateId(),
+    };
+    items.push(newItem);
+    render();
+    setTimeout(function () {
+        showToast("Item Added Successfully!");
+    }, 0);
+}
 
 // Toggle completed state
 function editCompleted(itemId) {
@@ -55,4 +66,27 @@ function removeItem(itemId) {
     });
     render();
     showToast("Item deleted successfully!");
+}
+
+// Start editing
+function startEdit(itemId) {
+    var item = items.find((i) => i.id === itemId);
+    if (item) {
+        editId = itemId;
+        $("#item-input").val(item.name);
+        $(".form-submit").text("Update");
+    }
+}
+
+// Apply edit
+function applyEdit(newName) {
+    items = items.map(function (item) {
+        if (item.id === editId) {
+            return { ...item, name: newName };
+        }
+        return item;
+    });
+    editId = null;
+    render();
+    showToast("Item updated successfully!", "success");
 }

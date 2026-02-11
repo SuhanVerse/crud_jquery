@@ -100,7 +100,7 @@
 
 .single-item.completed p {
     color: var(--color-text-muted);
-    text-decoration: line-through;
+    /* text-decoration: line-through; */
 }
 
 /* Buttons */

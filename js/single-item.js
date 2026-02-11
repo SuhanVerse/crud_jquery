@@ -6,7 +6,10 @@ function createSingleItem(item) {
     var $checkbox = $(
         `<input type="checkbox" ${item.completed ? "checked" : ""} aria-label="Mark ${item.name} as completed" />`,
     );
-    var $text = $(`<p>${item.name}</p>`);
+    var $text =
+        $(`<p style="text-decoration: ${item.completed ? "line-through" : "none"}">
+      ${item.name}
+    </p>`);
     var $editBtn =
         $(`<button class="btn edit-btn" title="Edit item" aria-label="Edit ${item.name}">
                         <i class="fa-regular fa-pen-to-square"></i>

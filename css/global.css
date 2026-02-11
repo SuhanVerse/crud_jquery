@@ -181,5 +181,5 @@ body::after {
 
 #toast.show {
     opacity: 1;
-    transform: translateX(-50%) translateY(-10px);
+    transform: translateX(-50%) translateY(-90%);
 }
